@@ -1,15 +1,16 @@
 ﻿using System;
+
 using CodeSmith.Data.Properties;
 
 namespace CodeSmith.Data.Rules.Validation
 {
     /// <summary>
-    /// A rule to compare values.
+    ///     A rule to compare values.
     /// </summary>
     /// <typeparam name="T">The value type.</typeparam>
     /// <example>
-    /// <para>Add rule using the rule manager directly.</para>
-    /// <code><![CDATA[
+    ///     <para>Add rule using the rule manager directly.</para>
+    ///     <code><![CDATA[
     /// static partial void AddSharedRules()
     /// {
     ///     RuleManager.AddShared<User>(new CompareRule<int>("Age", 21, ComparisonOperator.GreaterThanOrEqual));
@@ -20,16 +21,17 @@ namespace CodeSmith.Data.Rules.Validation
         where T : IComparable
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompareRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="CompareRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="value">The value.</param>
         public CompareRule(string property, T value)
             : this(property, value, ComparisonOperator.Equal)
-        {}
+        {
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompareRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="CompareRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="value">The value.</param>
@@ -47,17 +49,18 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompareRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="CompareRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="message">The message.</param>
         /// <param name="value">The value.</param>
         public CompareRule(string property, string message, T value)
             : this(property, message, value, ComparisonOperator.Equal)
-        {}
+        {
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompareRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="CompareRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="message">The message.</param>
@@ -71,19 +74,19 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Gets or sets the comparison operator.
+        ///     Gets or sets the comparison operator.
         /// </summary>
         /// <value>The comparison operator.</value>
         public ComparisonOperator ComparisonOperator { get; private set; }
 
         /// <summary>
-        /// Gets or sets the expected value.
+        ///     Gets or sets the expected value.
         /// </summary>
         /// <value>The expected value.</value>
         public T ExpectedValue { get; private set; }
 
         /// <summary>
-        /// Runs the specified context.
+        ///     Runs the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
         public override void Run(RuleContext context)
@@ -92,7 +95,9 @@ namespace CodeSmith.Data.Rules.Validation
             context.Success = true;
 
             if (!CanRun(context.TrackedObject))
+            {
                 return;
+            }
 
             context.Success = false;
 
@@ -100,14 +105,16 @@ namespace CodeSmith.Data.Rules.Validation
             IComparable comparer = value;
 
             if (comparer == null)
+            {
                 return;
+            }
 
-            int result = comparer.CompareTo(ExpectedValue);
+            var result = comparer.CompareTo(ExpectedValue);
             context.Success = CompareResult(result);
         }
 
         /// <summary>
-        /// Tests the comparison result.
+        ///     Tests the comparison result.
         /// </summary>
         /// <param name="result">The result.</param>
         /// <returns></returns>
@@ -128,6 +135,7 @@ namespace CodeSmith.Data.Rules.Validation
                 case ComparisonOperator.LessThanOrEqual:
                     return result <= 0;
             }
+
             return false;
         }
     }

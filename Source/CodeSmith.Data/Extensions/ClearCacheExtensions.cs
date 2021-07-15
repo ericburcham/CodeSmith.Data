@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+
 using CodeSmith.Data.Caching;
 
 namespace CodeSmith.Data.Linq
@@ -7,7 +7,7 @@ namespace CodeSmith.Data.Linq
     public static class ClearCacheExtensions
     {
         /// <summary>
-        /// Clears the cache of a given query.
+        ///     Clears the cache of a given query.
         /// </summary>
         /// <typeparam name="T">The type of the data in the data source.</typeparam>
         /// <param name="query">The query to be cleared.</param>
@@ -17,7 +17,7 @@ namespace CodeSmith.Data.Linq
         }
 
         /// <summary>
-        /// Clears the cache of a given query.
+        ///     Clears the cache of a given query.
         /// </summary>
         /// <typeparam name="T">The type of the data in the data source.</typeparam>
         /// <param name="query">The query to be cleared.</param>
@@ -28,7 +28,7 @@ namespace CodeSmith.Data.Linq
         }
 
         /// <summary>
-        /// Clears the cache of a given query.
+        ///     Clears the cache of a given query.
         /// </summary>
         /// <typeparam name="T">The type of the data in the data source.</typeparam>
         /// <param name="query">The query to be cleared.</param>
@@ -36,18 +36,20 @@ namespace CodeSmith.Data.Linq
         /// <param name="provider">The name of the cache provider.</param>
         public static bool ClearCache<T>(this IQueryable<T> query, string group, string provider)
         {
-            ICacheProvider cacheProvider = CacheManager.GetProvider(provider);
-            string key = query.GetHashKey();
+            var cacheProvider = CacheManager.GetProvider(provider);
+            var key = query.GetHashKey();
 
             // A group was specified, use it.
-            if (!String.IsNullOrEmpty(group))
+            if (!string.IsNullOrEmpty(group))
+            {
                 return cacheProvider.Remove(key, group);
+            }
 
             return cacheProvider.Remove(key);
         }
 
         /// <summary>
-        /// Clears the cache of a given query.
+        ///     Clears the cache of a given query.
         /// </summary>
         /// <typeparam name="T">The type of the data in the data source.</typeparam>
         /// <param name="query">The query to be cleared.</param>
@@ -55,7 +57,9 @@ namespace CodeSmith.Data.Linq
         public static bool ClearCache<T>(this IQueryable<T> query, CacheSettings settings)
         {
             if (settings == null)
+            {
                 settings = CacheManager.GetProfile();
+            }
 
             return ClearCache(query, settings.Group, settings.Provider);
         }

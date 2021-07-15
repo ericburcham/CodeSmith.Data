@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace CodeSmith.Data.Future
 {
@@ -13,14 +10,11 @@ namespace CodeSmith.Data.Future
             Query = query;
         }
 
-        public bool IsLoaded
-        {
-            get { return true; }
-        }
+        public bool IsLoaded => true;
 
-        public IQueryable Query { get; private set; }
+        public IQueryable Query { get; }
 
-        public T Value { get; private set; }
+        public T Value { get; }
 
         public void LoadValue(object o)
         {

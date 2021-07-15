@@ -4,11 +4,11 @@ using CodeSmith.Data.Rules.Assign;
 namespace CodeSmith.Data.Attributes
 {
     /// <summary>
-    /// Assigns the current date / time to the property for the specified entity states.
+    ///     Assigns the current date / time to the property for the specified entity states.
     /// </summary>
     /// <example>
-    /// <para>Add rule using the Metadata class and attribute.</para>
-    /// <code><![CDATA[
+    ///     <para>Add rule using the Metadata class and attribute.</para>
+    ///     <code><![CDATA[
     /// private class Metadata
     /// {
     ///     // fragment of the metadata class
@@ -21,26 +21,28 @@ namespace CodeSmith.Data.Attributes
     /// }
     /// ]]></code>
     /// </example>
-    /// <seealso cref="T:CodeSmith.Data.Rules.Assign.NowRule"/>
+    /// <seealso cref="T:CodeSmith.Data.Rules.Assign.NowRule" />
     public class NowAttribute : RuleAttributeBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NowAttribute"/> class.
+        ///     Initializes a new instance of the <see cref="NowAttribute" /> class.
         /// </summary>
         public NowAttribute()
             : this(EntityState.Dirty, NowTimeZone.Local)
-        { }
+        {
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NowAttribute"/> class.
+        ///     Initializes a new instance of the <see cref="NowAttribute" /> class.
         /// </summary>
         /// <param name="state">State of the object that can be assigned.</param>
         public NowAttribute(EntityState state)
             : this(state, NowTimeZone.Local)
-        { }
+        {
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NowAttribute"/> class.
+        ///     Initializes a new instance of the <see cref="NowAttribute" /> class.
         /// </summary>
         /// <param name="state">State of the object that can be assigned.</param>
         /// <param name="timeZone">The time zone.</param>
@@ -50,11 +52,10 @@ namespace CodeSmith.Data.Attributes
             TimeZone = timeZone;
         }
 
-
         public NowTimeZone TimeZone { get; set; }
 
         /// <summary>
-        /// Creates the rule.
+        ///     Creates the rule.
         /// </summary>
         /// <param name="property">The property name this rule applies to.</param>
         /// <returns>A new instance of the rule.</returns>
@@ -64,11 +65,14 @@ namespace CodeSmith.Data.Attributes
         }
 
         /// <summary>
-        /// Determines whether the specified value of the object is valid.
+        ///     Determines whether the specified value of the object is valid.
         /// </summary>
-        /// <param name="value">The value of the specified validation object on which the <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/> is declared.</param>
+        /// <param name="value">
+        ///     The value of the specified validation object on which the
+        ///     <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute" /> is declared.
+        /// </param>
         /// <returns>
-        /// true if the specified value is valid; otherwise, false.
+        ///     true if the specified value is valid; otherwise, false.
         /// </returns>
         public override bool IsValid(object value)
         {

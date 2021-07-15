@@ -1,22 +1,23 @@
 ﻿using System;
-using CodeSmith.Data.Properties;
 using System.Data.SqlTypes;
+
+using CodeSmith.Data.Properties;
 
 namespace CodeSmith.Data.Rules.Validation
 {
     /// <summary>
-    /// A rule to check that the value is not null.
+    ///     A rule to check that the value is not null.
     /// </summary>
     /// <example>
-    /// <para>Add rule using the rule manager directly.</para>
-    /// <code><![CDATA[
+    ///     <para>Add rule using the rule manager directly.</para>
+    ///     <code><![CDATA[
     /// static partial void AddSharedRules()
     /// {
     ///     RuleManager.AddShared<User>(new RequiredRule("UserName"));
     /// }
     /// ]]></code>
-    /// <para>Add rule using the Metadata class and attribute.</para>
-    /// <code><![CDATA[
+    ///     <para>Add rule using the Metadata class and attribute.</para>
+    ///     <code><![CDATA[
     /// private class Metadata
     /// {
     ///     // fragment of the metadata class
@@ -26,11 +27,11 @@ namespace CodeSmith.Data.Rules.Validation
     /// }
     /// ]]></code>
     /// </example>
-    /// <seealso cref="T:System.ComponentModel.DataAnnotations.RequiredAttribute"/>
+    /// <seealso cref="T:System.ComponentModel.DataAnnotations.RequiredAttribute" />
     public class RequiredRule : PropertyRuleBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RequiredRule"/> class.
+        ///     Initializes a new instance of the <see cref="RequiredRule" /> class.
         /// </summary>
         /// <param name="property">The target property to apply rule to.</param>
         public RequiredRule(string property)
@@ -42,7 +43,7 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RequiredRule"/> class.
+        ///     Initializes a new instance of the <see cref="RequiredRule" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="message">The message.</param>
@@ -52,7 +53,7 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Runs the specified context.
+        ///     Runs the specified context.
         /// </summary>
         /// <param name="context">The rule context.</param>
         public override void Run(RuleContext context)
@@ -61,9 +62,11 @@ namespace CodeSmith.Data.Rules.Validation
             context.Success = true;
 
             if (!CanRun(context.TrackedObject))
+            {
                 return;
+            }
 
-            object value = GetPropertyValue(context.TrackedObject.Current);
+            var value = GetPropertyValue(context.TrackedObject.Current);
 
             if (value is string && value != null)
             {

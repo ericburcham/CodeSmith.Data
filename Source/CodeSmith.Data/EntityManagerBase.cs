@@ -3,7 +3,7 @@
 namespace CodeSmith.Data
 {
     /// <summary>
-    /// A base class for entity managers.
+    ///     A base class for entity managers.
     /// </summary>
     /// <typeparam name="TManager">The type of the manager.</typeparam>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
@@ -12,38 +12,31 @@ namespace CodeSmith.Data
         where TManager : IDataManager
         where TEntity : class
     {
-        private readonly TManager _manager;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityManagerBase&lt;TManager, TEntity&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="EntityManagerBase&lt;TManager, TEntity&gt;" /> class.
         /// </summary>
         /// <param name="manager">The manager.</param>
         protected EntityManagerBase(TManager manager)
         {
-            _manager = manager;
+            Manager = manager;
             AddValidationRules();
         }
 
-        #region IEntityManager<TManager,TEntity> Members
-
         /// <summary>
-        /// Gets the manager.
+        ///     Gets the manager.
         /// </summary>
         /// <value>The manager.</value>
-        public TManager Manager
-        {
-            get { return _manager; }
-        }
+        public TManager Manager { get; }
 
         /// <summary>
-        /// Gets an entity by the primary key.
+        ///     Gets an entity by the primary key.
         /// </summary>
         /// <param name="key">The key for the entity.</param>
         /// <returns>
-        /// An instance of the entity or null if not found.
+        ///     An instance of the entity or null if not found.
         /// </returns>
         /// <remarks>
-        /// This method provides a common retrieval of an entity.
+        ///     This method provides a common retrieval of an entity.
         /// </remarks>
         /// <exception cref="NotImplementedException"></exception>
         public virtual TEntity GetByKey(IEntityKey key)
@@ -51,12 +44,11 @@ namespace CodeSmith.Data
             throw new NotImplementedException();
         }
 
-        #endregion
-
         /// <summary>
-        /// Add validation rules.
+        ///     Add validation rules.
         /// </summary>
         protected virtual void AddValidationRules()
-        {}
+        {
+        }
     }
 }

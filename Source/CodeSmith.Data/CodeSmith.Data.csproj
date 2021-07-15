@@ -67,9 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Attributes\IpAddressAttribute.cs" />
     <Compile Include="Attributes\NotNullAttribute.cs" />
     <Compile Include="Attributes\RuleAttributeBase.cs" />
@@ -90,6 +87,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Audit\NotAuditedAttribute.cs" />
+    <Compile Include="Caching\AggregateCacheProvider.cs" />
     <Compile Include="Caching\CacheManager.cs" />
     <Compile Include="Caching\CacheManagerSection.cs" />
     <Compile Include="Caching\CacheSettingsExtensions.cs" />
@@ -97,9 +95,10 @@
     <Compile Include="Caching\ProfileElementCollection.cs" />
     <Compile Include="Caching\CacheProvider.cs" />
     <Compile Include="Caching\CacheProviderCollection.cs" />
-    <Compile Include="Caching\HttpCacheProvider.cs" />
+    <Compile Include="Caching\MemoryCacheProvider.cs" />
     <Compile Include="Caching\ICacheProvider.cs" />
     <Compile Include="Caching\QueryResultCache.cs" />
+    <Compile Include="Caching\RedisCacheProvider.cs" />
     <Compile Include="Caching\StaticCacheProvider.cs" />
     <Compile Include="Collections\ConcurrentDictionary.cs">
       <SubType>Code</SubType>

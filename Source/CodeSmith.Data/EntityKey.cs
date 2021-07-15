@@ -2,7 +2,8 @@
 {
     /// <summary>Interface for an entity key.</summary>
     public interface IEntityKey
-    {}
+    {
+    }
 
     /// <summary>Interface for an entity key.</summary>
     /// <typeparam name="TKey">The type of the key.</typeparam>
@@ -47,26 +48,17 @@
     public class EntityKey<TKey>
         : IEntityKey<TKey>
     {
-        private readonly TKey _key;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityKey&lt;TKey&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="EntityKey&lt;TKey&gt;" /> class.
         /// </summary>
         /// <param name="key">The entity key.</param>
         public EntityKey(TKey key)
         {
-            _key = key;
+            Key = key;
         }
-
-        #region IEntityKey<TKey> Members
 
         /// <summary>Gets the entity key.</summary>
-        public TKey Key
-        {
-            get { return _key; }
-        }
-
-        #endregion
+        public TKey Key { get; }
     }
 
     /// <summary>Class representing a two part entity key.</summary>
@@ -75,28 +67,19 @@
     public class EntityKey<TKey0, TKey1>
         : EntityKey<TKey0>, IEntityKey<TKey0, TKey1>
     {
-        private readonly TKey1 _key1;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityKey&lt;TKey0, TKey1&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="EntityKey&lt;TKey0, TKey1&gt;" /> class.
         /// </summary>
         /// <param name="key0">The first key value.</param>
         /// <param name="key1">The second key value.</param>
         public EntityKey(TKey0 key0, TKey1 key1)
             : base(key0)
         {
-            _key1 = key1;
+            Key1 = key1;
         }
-
-        #region IEntityKey<TKey0,TKey1> Members
 
         /// <summary>Gets the second key.</summary>
-        public TKey1 Key1
-        {
-            get { return _key1; }
-        }
-
-        #endregion
+        public TKey1 Key1 { get; }
     }
 
     /// <summary>Class representing a three part entity key.</summary>
@@ -106,10 +89,8 @@
     public class EntityKey<TKey0, TKey1, TKey2>
         : EntityKey<TKey0, TKey1>, IEntityKey<TKey0, TKey1, TKey2>
     {
-        private readonly TKey2 _key2;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityKey&lt;TKey0, TKey1, TKey2&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="EntityKey&lt;TKey0, TKey1, TKey2&gt;" /> class.
         /// </summary>
         /// <param name="key0">The first key value.</param>
         /// <param name="key1">The second key value.</param>
@@ -117,18 +98,11 @@
         public EntityKey(TKey0 key0, TKey1 key1, TKey2 key2)
             : base(key0, key1)
         {
-            _key2 = key2;
+            Key2 = key2;
         }
-
-        #region IEntityKey<TKey0,TKey1,TKey2> Members
 
         /// <summary>Gets the third key.</summary>
-        public TKey2 Key2
-        {
-            get { return _key2; }
-        }
-
-        #endregion
+        public TKey2 Key2 { get; }
     }
 
     /// <summary>Class representing a four part entity key.</summary>
@@ -139,10 +113,8 @@
     public class EntityKey<TKey0, TKey1, TKey2, TKey3>
         : EntityKey<TKey0, TKey1, TKey2>, IEntityKey<TKey0, TKey1, TKey2, TKey3>
     {
-        private readonly TKey3 _key3;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityKey&lt;TKey0, TKey1, TKey2, TKey3&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="EntityKey&lt;TKey0, TKey1, TKey2, TKey3&gt;" /> class.
         /// </summary>
         /// <param name="key0">The first key value.</param>
         /// <param name="key1">The second key value.</param>
@@ -151,17 +123,10 @@
         public EntityKey(TKey0 key0, TKey1 key1, TKey2 key2, TKey3 key3)
             : base(key0, key1, key2)
         {
-            _key3 = key3;
+            Key3 = key3;
         }
-
-        #region IEntityKey<TKey0,TKey1,TKey2,TKey3> Members
 
         /// <summary>Gets the fourth key.</summary>
-        public TKey3 Key3
-        {
-            get { return _key3; }
-        }
-
-        #endregion
+        public TKey3 Key3 { get; }
     }
 }

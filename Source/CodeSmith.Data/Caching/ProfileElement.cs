@@ -4,12 +4,12 @@ using System.Configuration;
 namespace CodeSmith.Data.Caching
 {
     /// <summary>
-    /// Profile configuration element.
+    ///     Profile configuration element.
     /// </summary>
     public class ProfileElement : ConfigurationElement
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProfileElement"/> class.
+        ///     Initializes a new instance of the <see cref="ProfileElement" /> class.
         /// </summary>
         public ProfileElement()
         {
@@ -18,75 +18,75 @@ namespace CodeSmith.Data.Caching
         }
 
         /// <summary>
-        /// Gets or sets the name of the profile.
-        /// </summary>
-        /// <value>The name of the profile.</value>
-        [ConfigurationProperty("name", IsKey = true, IsRequired = true)]
-        public string Name
-        {
-            get { return (string)this["name"]; }
-            set { this["name"] = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the description for the profile.
+        ///     Gets or sets the description for the profile.
         /// </summary>
         /// <value>The description for the profile.</value>
         [ConfigurationProperty("description", DefaultValue = "")]
         public string Description
         {
-            get { return this["description"] as string; }
-            set { this["description"] = value; }
+            get => this["description"] as string;
+            set => this["description"] = value;
         }
 
         /// <summary>
-        /// Gets or sets the expiration duration.
+        ///     Gets or sets the expiration duration.
         /// </summary>
         /// <value>The expiration duration.</value>
         [ConfigurationProperty("duration", IsRequired = true)]
         public TimeSpan Duration
         {
-            get { return (TimeSpan)this["duration"]; }
-            set { this["duration"] = value; }
+            get => (TimeSpan)this["duration"];
+            set => this["duration"] = value;
         }
 
         /// <summary>
-        /// Gets or sets the cache provider name.
-        /// </summary>
-        /// <value>The cache provider name.</value>
-        [ConfigurationProperty("provider")]
-        public string Provider
-        {
-            get { return this["provider"] as string; }
-            set { this["provider"] = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the group key of the profile.
+        ///     Gets or sets the group key of the profile.
         /// </summary>
         /// <value>The name of the group key.</value>
         [ConfigurationProperty("group")]
         public string Group
         {
-            get { return (string)this["group"]; }
-            set { this["group"] = value; }
+            get => (string)this["group"];
+            set => this["group"] = value;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating the cache expiration mode.
+        ///     Gets or sets a value indicating the cache expiration mode.
         /// </summary>
         /// <value>The cache expiration mode.</value>
         [ConfigurationProperty("mode", DefaultValue = CacheExpirationMode.Duration)]
         public CacheExpirationMode Mode
         {
-            get { return (CacheExpirationMode)this["mode"]; }
-            set { this["mode"] = value; }
+            get => (CacheExpirationMode)this["mode"];
+            set => this["mode"] = value;
         }
 
         /// <summary>
-        /// Converts the profile element to a <see cref="CacheSettings"/> instance.
+        ///     Gets or sets the name of the profile.
         /// </summary>
-        /// <returns>An instance of <see cref="CacheSettings"/>.</returns>
+        /// <value>The name of the profile.</value>
+        [ConfigurationProperty("name", IsKey = true, IsRequired = true)]
+        public string Name
+        {
+            get => (string)this["name"];
+            set => this["name"] = value;
+        }
+
+        /// <summary>
+        ///     Gets or sets the cache provider name.
+        /// </summary>
+        /// <value>The cache provider name.</value>
+        [ConfigurationProperty("provider")]
+        public string Provider
+        {
+            get => this["provider"] as string;
+            set => this["provider"] = value;
+        }
+
+        /// <summary>
+        ///     Converts the profile element to a <see cref="CacheSettings" /> instance.
+        /// </summary>
+        /// <returns>An instance of <see cref="CacheSettings" />.</returns>
         public CacheSettings ToCacheSettings()
         {
             var cache = new CacheSettings();
@@ -94,10 +94,14 @@ namespace CodeSmith.Data.Caching
             cache.Mode = Mode;
 
             if (!string.IsNullOrEmpty(Provider))
+            {
                 cache.Provider = Provider;
+            }
 
             if (!string.IsNullOrEmpty(Group))
+            {
                 cache.Group = Group;
+            }
 
             return cache;
         }

@@ -5,7 +5,7 @@ namespace CodeSmith.Data.Linq
     public static class ClearCacheFirstOrDefaultExtensions
     {
         /// <summary>
-        /// Clears the cache of a given query.
+        ///     Clears the cache of a given query.
         /// </summary>
         /// <typeparam name="T">The type of the data in the data source.</typeparam>
         /// <param name="query">The query to be cleared.</param>
@@ -15,7 +15,7 @@ namespace CodeSmith.Data.Linq
         }
 
         /// <summary>
-        /// Clears the cache of a given query.
+        ///     Clears the cache of a given query.
         /// </summary>
         /// <typeparam name="T">The type of the data in the data source.</typeparam>
         /// <param name="query">The query to be cleared.</param>
@@ -26,7 +26,7 @@ namespace CodeSmith.Data.Linq
         }
 
         /// <summary>
-        /// Clears the cache of a given query.
+        ///     Clears the cache of a given query.
         /// </summary>
         /// <typeparam name="T">The type of the data in the data source.</typeparam>
         /// <param name="query">The query to be cleared.</param>
@@ -35,8 +35,8 @@ namespace CodeSmith.Data.Linq
         public static bool ClearCacheFirstOrDefault<T>(this IQueryable<T> query, string group, string provider)
         {
             return query
-                .Take(1)
-                .ClearCache(group, provider);
+                   .Take(1)
+                   .ClearCache(group, provider);
         }
     }
 }

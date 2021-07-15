@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+
 using CodeSmith.Data.Future;
 
 namespace CodeSmith.Data

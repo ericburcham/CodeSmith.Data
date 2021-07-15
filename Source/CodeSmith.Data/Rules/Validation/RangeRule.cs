@@ -1,22 +1,23 @@
 ﻿using System;
+
 using CodeSmith.Data.Properties;
 
 namespace CodeSmith.Data.Rules.Validation
 {
     /// <summary>
-    /// A rule to check if the value is between a range.
+    ///     A rule to check if the value is between a range.
     /// </summary>
     /// <typeparam name="T">The value type.</typeparam>
     /// <example>
-    /// <para>Add rule using the rule manager directly.</para>
-    /// <code><![CDATA[
+    ///     <para>Add rule using the rule manager directly.</para>
+    ///     <code><![CDATA[
     /// static partial void AddSharedRules()
     /// {
     ///     RuleManager.AddShared<User>(new RangeRule<int>("Age", 18, 21));
     /// }
     /// ]]></code>
-    /// <para>Add rule using the Metadata class and attribute.</para>
-    /// <code><![CDATA[
+    ///     <para>Add rule using the Metadata class and attribute.</para>
+    ///     <code><![CDATA[
     /// private class Metadata
     /// {
     ///     // fragment of the metadata class
@@ -26,12 +27,12 @@ namespace CodeSmith.Data.Rules.Validation
     /// }
     /// ]]></code>
     /// </example>
-    /// <seealso cref="T:System.ComponentModel.DataAnnotations.RangeAttribute"/>
+    /// <seealso cref="T:System.ComponentModel.DataAnnotations.RangeAttribute" />
     public class RangeRule<T> : PropertyRuleBase
         where T : IComparable
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RangeRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="RangeRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="minValue">The min value.</param>
@@ -49,7 +50,7 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RangeRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="RangeRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="message">The message.</param>
@@ -63,19 +64,19 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Gets or sets the max value.
+        ///     Gets or sets the max value.
         /// </summary>
         /// <value>The max value.</value>
         public T MaxValue { get; private set; }
 
         /// <summary>
-        /// Gets or sets the min value.
+        ///     Gets or sets the min value.
         /// </summary>
         /// <value>The min value.</value>
         public T MinValue { get; private set; }
 
         /// <summary>
-        /// Runs the specified context.
+        ///     Runs the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
         public override void Run(RuleContext context)
@@ -84,7 +85,9 @@ namespace CodeSmith.Data.Rules.Validation
             context.Success = true;
 
             if (!CanRun(context.TrackedObject))
+            {
                 return;
+            }
 
             context.Success = false;
 
@@ -92,7 +95,9 @@ namespace CodeSmith.Data.Rules.Validation
             IComparable comparer = value;
 
             if (comparer == null)
+            {
                 return;
+            }
 
             context.Success = (comparer.CompareTo(MinValue) >= 0 && comparer.CompareTo(MaxValue) <= 0);
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using CodeSmith.Data.Future;
 
 namespace CodeSmith.Data
@@ -8,19 +9,15 @@ namespace CodeSmith.Data
     {
         private static readonly List<IDataContextProvider> _providers = new List<IDataContextProvider>();
 
-        public static void Register(IDataContextProvider provider)
-        {
-            if (!_providers.Contains(provider))
-                _providers.Add(provider);
-        }
-
         public static IDataContext GetDataConext(IQueryable query)
         {
             foreach (var provider in _providers)
             {
                 var db = provider.GetDataConext(query);
                 if (db != null)
+                {
                     return db;
+                }
             }
 
             return null;
@@ -32,10 +29,20 @@ namespace CodeSmith.Data
             {
                 var db = provider.GetFutureContext(query);
                 if (db != null)
+                {
                     return db;
+                }
             }
 
             return null;
+        }
+
+        public static void Register(IDataContextProvider provider)
+        {
+            if (!_providers.Contains(provider))
+            {
+                _providers.Add(provider);
+            }
         }
     }
 }

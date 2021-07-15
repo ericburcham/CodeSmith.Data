@@ -6,9 +6,7 @@ namespace CodeSmith.Data
     {
         string ConnectionString { get; }
 
-        void Detach(params object[] enities);
-
-        void SubmitChanges();
+        bool HasOpenTransaction { get; }
 
         bool ObjectTrackingEnabled { get; set; }
 
@@ -16,8 +14,10 @@ namespace CodeSmith.Data
 
         void CommitTransaction();
 
+        void Detach(params object[] enities);
+
         void RollbackTransaction();
 
-        bool HasOpenTransaction { get; }
+        void SubmitChanges();
     }
 }

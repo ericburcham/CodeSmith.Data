@@ -3,12 +3,12 @@
 namespace CodeSmith.Data.Rules.Validation
 {
     /// <summary>
-    /// A rule that run a method to validate.
+    ///     A rule that run a method to validate.
     /// </summary>
     /// <typeparam name="T">The property type.</typeparam>
     /// <example>
-    /// <para>Add rule using the rule manager directly.</para>
-    /// <code><![CDATA[
+    ///     <para>Add rule using the rule manager directly.</para>
+    ///     <code><![CDATA[
     /// static partial void AddSharedRules()
     /// {
     ///     RuleManager.AddShared<User>(new CustomRule<string>("UserName", "UserName must be unique.", User.UniqueUserName));
@@ -29,12 +29,12 @@ namespace CodeSmith.Data.Rules.Validation
     /// ]]></code>
     /// </example>
     /// <remarks>
-    /// The custom method should return true when the property is valid.
+    ///     The custom method should return true when the property is valid.
     /// </remarks>
     public class CustomRule<T> : PropertyRuleBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="CustomRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="message">The message.</param>
@@ -46,7 +46,7 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomRule&lt;T&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="CustomRule&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="property">The property.</param>
         /// <param name="message">The message.</param>
@@ -58,13 +58,13 @@ namespace CodeSmith.Data.Rules.Validation
         }
 
         /// <summary>
-        /// Gets or sets the method.
+        ///     Gets or sets the method.
         /// </summary>
         /// <value>The method.</value>
         public object Method { get; private set; }
 
         /// <summary>
-        /// Runs the specified context.
+        ///     Runs the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
         public override void Run(RuleContext context)
@@ -73,7 +73,9 @@ namespace CodeSmith.Data.Rules.Validation
             context.Success = true;
 
             if (!CanRun(context.TrackedObject))
+            {
                 return;
+            }
 
             try
             {
